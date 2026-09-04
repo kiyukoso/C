@@ -1250,3 +1250,59 @@
 //     return 0;
 // }
 //指针用于交换两个值(传地址)
+
+void reverse(int* p,int start,int end)
+{
+    while(start<end)
+    {
+        int temp=p[start];
+        p[start]=p[end];
+        p[end]=temp;
+        start++;
+        end--;//由外向内靠近
+    }
+}
+
+// void rotate(int* p,int n,int k)
+// {
+//     if(n==0)
+//     return;
+//     k%=n;
+//     reverse(p,0,n-1);//反转整个数组:reverse([A][B]) = [ reverse(B) ][ reverse(A) ]
+//     reverse(p,0,k-1);//反转前k个元素，反转reverse(B) → 变回 [ B ]
+//     reverse(p,k,n-1);//反转后n-k个元素，反转reverse(A) → 变回 [ A ]
+// }
+// //[A]为前n-k个元素
+// //[B]为后k个元素
+
+// int main()
+// {
+//     int n=0;
+//     scanf("%d",&n);
+//     int a[n];
+//     for(int i=0;i<n;i++)
+//     {
+//         scanf("%d",&a[i]);
+//     }
+//     printf("原数组为:\n");
+//     for(int j=0;j<n;j++)
+//     {
+//         printf("%d ",a[j]);
+//     }
+//     printf("\n");
+//     printf("请输入循环右移的长度:\n");
+//     int k;
+//     scanf("%d",&k);
+//     rotate(a,n,k);
+//     printf("新数组为:\n");
+//     for(int j=0;j<n;j++)
+//     {
+//         printf("%d ",a[j]);
+//     }
+//     return 0;
+// }
+//deepseek练习题：编写一个函数 void rotate(int arr[], int n, int k)，实现将长度为 n 的一维整型数组中的元素循环右移 k 个位置。
+// 示例：
+// 输入：arr = [1, 2, 3, 4, 5], k = 2
+// 输出：[4, 5, 1, 2, 3]
+//后k个元素需要往前跳n-k步
