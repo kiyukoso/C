@@ -1239,7 +1239,7 @@
 //     *a=*b;
 //     *b=temp;
 // }
-// //通过得到a,b的地址，交换两个地址中存放的值
+// //通过得到a,b的地址，交换两个地址中存放的值，再放回地址中
 
 // int main()
 // {
@@ -1251,17 +1251,17 @@
 // }
 //指针用于交换两个值(传地址)
 
-void reverse(int* p,int start,int end)
-{
-    while(start<end)
-    {
-        int temp=p[start];
-        p[start]=p[end];
-        p[end]=temp;
-        start++;
-        end--;//由外向内靠近
-    }
-}
+// void reverse(int* p,int start,int end)
+// {
+//     while(start<end)
+//     {
+//         int temp=p[start];
+//         p[start]=p[end];
+//         p[end]=temp;
+//         start++;
+//         end--;//由外向内靠近
+//     }
+// }
 
 // void rotate(int* p,int n,int k)
 // {
@@ -1306,3 +1306,62 @@ void reverse(int* p,int start,int end)
 // 输入：arr = [1, 2, 3, 4, 5], k = 2
 // 输出：[4, 5, 1, 2, 3]
 //后k个元素需要往前跳n-k步
+
+// int main()
+// {
+//     int a[5]={1,2,3,4,5};
+//     printf("%zu\n",sizeof(a));//一个int是4，5个元素共20字节
+//     printf("%p\n",a);//取出首元素地址
+//     printf("%p\n",a+1);
+//     printf("%p\n",&a[0]);//取出首元素地址
+//     printf("%p\n",&a[0]+1);
+//     printf("%p\n",&a);//取出整个数组的地址
+//     printf("%p\n",&a+1);//例子：FFF8C0变为FFFF8D4，其中a[]这个数组大小为20字节，&a为整个数组地址，因此&a+1就代表整个数组的地址再加上该数组大小
+//     //int(*)[5]:数组指针类型，指向整个数组，即&a
+//     return 0;
+// }
+//数组名就是首元素地址
+//但sizeof中单独放数组名，这里的数组名表示整个数组，计算的是整个数组的大小，单位是字节
+//&数组名，这里的数组名表示整个数组，取出的是整个数组的地址
+
+// int main()
+// {
+//     int a[10]={0};
+//     int* p=a;
+//     int i=1;
+//     int sz=sizeof(a)/sizeof(a[0]);
+//     for(p;p<a+sz;p++,i+=2)
+//     {
+//         *p=i;
+//     }
+//     p=a;
+//     for(int j=0;j<sz;j++)
+//     {
+//         printf("%d ",j[a]);
+//     }
+//     //a[i]==*(a+i)==*(p+i)
+//     //i[a]==*(i+a)==*(a+i)
+//     //a[i]==i[a]
+//     //数组的底层就是指针
+//     return 0;
+// }
+//使用指针访问数组
+
+// //        int* arr
+// void test(int arr[])//对于编译器来说，此处的int arr[]就是int* arr,本质上就是指针
+// {
+//     int sz2 = sizeof(arr) / sizeof(arr[0]);//因此sizeof(arr)是求一个指针变量的长度，而x64中为8，因此sz2==2
+//     printf("sz2 = %d\n", sz2);
+// }
+// //所以数组长度通常在主函数中计算并传到子函数中
+
+// int main()
+// {
+//     int arr[10] = { 1,2,3,4,5,6,7,8,9,10 };
+//     int sz1 = sizeof(arr) / sizeof(arr[0]);
+//     printf("sz1 = %d\n", sz1);
+
+//     test(arr);//arr就是首元素的地址==> &arr[0]
+//     return 0;
+// }
+//一维数组传参的本质
