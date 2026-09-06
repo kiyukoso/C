@@ -1444,3 +1444,62 @@
 //str1和str2代表两个数组的数组名，也是首元素地址，因为两个数组不同，所以首元素地址不会相等，因此str1!=str2
 //这个常量字符串不允许被修改，因此同样的内容在内存中是唯一的，因此str3和str4存放的字符串的地址相同
 
+// int main()
+// {
+//     int a[10]={1,2,3,4,5,6,7,8,9,10};
+//     int (*p)[10]=&a;//数组指针写法
+//     return 0;
+// }
+//数组指针:指向数组的指针，存放数组的地址
+
+// void print()
+// {
+    
+// }
+
+// int main()
+// {
+//     int a[][3]={{1,1,1,1,1},{2,2,2,2,2},{3,3,3,3,3}};
+//     print();
+//     return 0;
+// }
+//二维数组传参9本质
+
+// int main()
+// {
+//     int money;
+//     scanf("%d",&money);
+//     int total=money;//一开始喝的瓶数
+//     int empty=money;//一开始剩的空瓶
+//     while(empty>=2)
+//     {
+//         int exchange;
+//         exchange=empty/2;//交换得到的可以喝的瓶数
+//         total+=exchange;//喝了的总瓶数
+//         empty=empty%2+exchange;//喝完与原本剩下的空瓶总和用于下次置换
+//     }
+//     printf("%d\n",total);
+//     return 0;
+// }
+//比特练习题：喝汽水问题
+//喝汽水，1瓶汽水1元，2个空瓶可以换一瓶汽水，给20元，可以多少汽水
+//找规律可得本质为等比数列：money*2-1，有-1是因为最后一定会剩下1个空瓶无法兑换
+
+void reverse_ch(char* ch,size_t len)
+{
+    int i=0;
+}
+
+int main()
+{
+    char ch[]="daiisuki";
+    size_t len=strlen(ch);
+    char* pch=ch;
+    reverse_ch(ch,len);
+    pch=ch;
+    printf("%s\n",pch);
+    return 0;
+}
+//比特练习题：字符串逆序
+//写一个函数，可以逆序一个字符串的内容
+//依旧从两边向中间对称交换
