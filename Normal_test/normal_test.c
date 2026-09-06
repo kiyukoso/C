@@ -1364,4 +1364,83 @@
 //     test(arr);//arr就是首元素的地址==> &arr[0]
 //     return 0;
 // }
-//一维数组传参的本质
+//一维数组传参的本质:传首元素地址
+
+// int main()
+// {
+//     int a=10;
+//     int* pa=&a;//一级指针
+//     int** ppa=&pa;//二级指针,ppa指向的pa类型是int*
+//     printf("%p\n",&a);
+//     printf("%d\n",a);
+//     printf("%p\n",pa);
+//     printf("%d\n",*pa);
+//     printf("%p\n",ppa);//pa存放的是a的地址，ppa存放的是pa的地址，pa的地址与a的地址不一样
+//     printf("%d\n",**ppa);//想通过二级指针找到最初的指向，需要解引用2次
+//     **ppa=100;
+//     printf("%d\n",a);
+//     return 0;
+// }
+//二级指针
+
+// int main()
+// {
+//     int a1[]={1,2,3};
+//     int a2[]={4,5,6};
+//     int a3[]={7,8,9};
+//     int* p[3]={a1,a2,a3};
+//     for(int i=0;i<3;i++)
+//     {
+//         int j=0;
+//         for(j=0;j<3;j++)
+//         {
+//             printf("%d ",p[i][j]);//通过指针数组将其他数组联系组合起来
+//         }
+//         printf("\n");
+//     }
+//     return 0;
+// }
+//指针数组:存放指针的数组
+//指针数组模拟二维数组
+
+// int main()
+// {
+//     char ch='x';
+//     char* pch=&ch;
+//     const char* ps="abcdef";//"abcdef"是常量字符串（不可被修改），这里的赋值时把首字符a的地址赋值给ps
+//     printf("%c\n",*ps);//解引用ps得到该字符串首元素
+//     printf("%s\n",ps);//打印字符串只需要给该字符串首元素地址即可，即ps,ps=&'a'，不需要解引用ps
+//     //因为指向的是常量字符串，需要加上cosnt
+//     char* ps[3]={"zhangsan","lisi","wangwu"};
+//     for(int i=0;i<3;i++)
+//     {
+//         printf("%s\n",ps[i]);
+//     }
+//     //打印字符指针数组
+//     return 0;
+// }
+//字符指针变量
+
+// int main()
+// {
+//     char str1[] = "hello bit.";
+//     char str2[] = "hello bit.";
+
+//     const char* str3 = "hello bit.";
+//     const char* str4 = "hello bit.";
+
+//     if (str1 == str2)//比较的是数组的起始地址，即首元素地址
+//         printf("str1 and str2 are same\n");//1
+//     else
+//         printf("str1 and str2 are not same\n");//2
+
+//     if (str3 == str4)//比较的是指针变量的内容，即存放的地址
+//         printf("str3 and str4 are same\n");//3
+//     else
+//         printf("str3 and str4 are not same\n");//4
+
+//     return 0;
+// }
+//str1和str2代表两个数组的数组名，也是首元素地址，因为两个数组不同，所以首元素地址不会相等，因此str1!=str2
+//这个常量字符串不允许被修改，因此同样的内容在内存中是唯一的，因此str3和str4存放的字符串的地址相同
+
