@@ -1452,17 +1452,17 @@
 // }
 //数组指针:指向数组的指针，存放数组的地址
 
-// void print()
-// {
+void print()
+{
     
-// }
+}
 
-// int main()
-// {
-//     int a[][3]={{1,1,1,1,1},{2,2,2,2,2},{3,3,3,3,3}};
-//     print();
-//     return 0;
-// }
+int main()
+{
+    int a[][3]={{1,1,1,1,1},{2,2,2,2,2},{3,3,3,3,3}};
+    print();
+    return 0;
+}
 //二维数组传参9本质
 
 // int main()
@@ -1485,21 +1485,30 @@
 //喝汽水，1瓶汽水1元，2个空瓶可以换一瓶汽水，给20元，可以多少汽水
 //找规律可得本质为等比数列：money*2-1，有-1是因为最后一定会剩下1个空瓶无法兑换
 
-void reverse_ch(char* ch,size_t len)
-{
-    int i=0;
-}
+// void reverse_ch(char* left,size_t len)
+// {
+//     char* right=left+len-1;
+//     size_t i=0;
+//     char temp;
+//     for(i=0;i<len/2;i++)
+//     {
+//         temp=*(left+i);
+//         *(left+i)=*(right-i);
+//         *(right-i)=temp;
+//     }
+//     printf("%s\n",left);
+// }
 
-int main()
-{
-    char ch[]="daiisuki";
-    size_t len=strlen(ch);
-    char* pch=ch;
-    reverse_ch(ch,len);
-    pch=ch;
-    printf("%s\n",pch);
-    return 0;
-}
+// int main()
+// {
+//     char ch[]="daiisuki";
+//     size_t len=strlen(ch);
+//     char* pch=ch;
+//     reverse_ch(ch,len);
+//     pch=ch;
+//     printf("%s\n",pch);
+//     return 0;
+// }
 //比特练习题：字符串逆序
 //写一个函数，可以逆序一个字符串的内容
 //依旧从两边向中间对称交换
