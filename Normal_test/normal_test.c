@@ -1452,17 +1452,26 @@
 // }
 //数组指针:指向数组的指针，存放数组的地址
 
-void print()
-{
-    
-}
+// void print(int (*a)[5],int r,int c)
+// {
+//     int i=0;
+//     for(i=0;i<r;i++)
+//     {
+//         int j=0;
+//         for(j=0;j<c;j++)
+//         {
+//             printf("%d ",a[i][j]);//a[i][j]==*(*(a+i)+j)
+//         }
+//         printf("\n");
+//     }
+// }
 
-int main()
-{
-    int a[][3]={{1,1,1,1,1},{2,2,2,2,2},{3,3,3,3,3}};
-    print();
-    return 0;
-}
+// int main()
+// {
+//     int a[3][5]={{1,1,1,1,1},{2,2,2,2,2},{3,3,3,3,3}};
+//     print(a,3,5);//a是数组名，数组名是首元素地址，而二维数组的首元素是第一个数组。因此a是第一个数组的地址即&a[0]
+//     return 0;
+// }
 //二维数组传参9本质
 
 // int main()
@@ -1512,3 +1521,147 @@ int main()
 //比特练习题：字符串逆序
 //写一个函数，可以逆序一个字符串的内容
 //依旧从两边向中间对称交换
+
+// void print()
+// {
+//     printf("666");
+// }
+
+// char ch()
+// {
+//     return 'x';
+// }
+
+// int add(int x,int y)
+// {
+//     return x+y;
+// }
+
+// int main()
+// {
+//     printf("%p\n",print);
+//     printf("%p\n",&print);
+//     //函数名就是函数的地址
+//     void (*pf)()=print;//指针前面看函数用什么定义（void/int/char......），指针后面的括号看函数括号内有没有参数
+//     printf("%p\n",pf);
+//     printf("\n");
+//     char (*pch)()=ch;
+//     printf("%p\n",ch);
+//     printf("%p\n",pch);
+//     char _ch=(*pch)();
+//     printf("%c\n",_ch);
+//     printf("\n");
+//     int (*pi)(int x,int y)=add;
+//     printf("%p\n",add);
+//     printf("%p\n",pi);
+//     int num=(*pi)(3,5);//也可以直接用:int num=pi(3,5)，*加和不加都行
+//     printf("%d\n",num);//(*pi)==add
+//     printf("\n");
+//     return 0;
+// }
+//函数指针变量：存放函数的地址
+
+// typedef unsigned int unit;
+// typedef int* pi_t;
+// typedef int(*pa_t)[5];//数组指针重命名要求，新类型名放在*右边 
+// typedef void (*pf_t)();
+
+// void print()
+// {
+//     printf("666");
+// }
+
+// int main()
+// {
+//     pi_t p=NULL;
+//     unit num=0;
+
+//     int* p1,p2;
+//     //p1是什么类型？指针
+//     //p2是什么类型？整型
+//     //原因：*只给了p1，p2只有int
+//     //改成：int* p1,* p2; 即可
+//     pi_t p3,p4;
+//     //若使用typedef重新命名int*，再使用那种形式p3,p4就都是指针了
+//     int a[5]={1,2,3,4,5};
+//     pa_t pa=&a;
+//     pf_t pf=print;
+//     pf();
+
+//     typedef struct Node
+//     {
+//         int data;
+//         struct Node* next;
+//     }Node;
+//     //结构体重命名为Node
+//     return 0;
+// }
+//typedef关键字:只能对类型重命名
+
+typedef int(*pt_t)(int,int);
+
+int add(int x,int y)
+{
+    return x+y;
+}
+
+int sub(int x,int y)
+{
+    return x-y;
+}
+
+int mul(int x,int y)
+{
+    return x*y;
+}
+
+int divide(int x,int y)
+{
+    return x/y;
+}
+
+void menu()
+{
+    printf("1.加法");
+    printf("2.减法");
+    printf("3.乘法");
+    printf("4.除法");
+    printf("0.退出");
+}
+
+int main()
+{
+    int input=0;
+    char choice;
+    do
+    {
+        menu();
+        printf("请选择:\n");
+        scanf("%d",&input);
+        pt_t pf[]={NULL,add,sub,mul,divide};
+        //          0    1   2   3   4
+        if(input>=1&&input<=4)
+        {
+            printf("请输入要计算的数字：\n");
+            int x,y;
+            scanf("%d %d",&x,&y);
+            int r=pf[input](x,y)
+            printf("结果为:%d\n",r);
+        }
+        else if(input==0)
+        break;
+        else
+        {
+            printf("请重新输入！\n");
+            choice='y';
+            continue;
+        }
+        printf("是否继续:(y/n)");
+        char choice;
+        scanf(" %c",&choice);
+    }while(choice=='y'||choice=='Y');
+    return 0;
+}
+//函数指针数组
+//用途：转移表
+//实现一个整数计算器
