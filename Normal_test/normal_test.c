@@ -1645,7 +1645,7 @@ int main()
             printf("请输入要计算的数字：\n");
             int x,y;
             scanf("%d %d",&x,&y);
-            int r=pf[input](x,y)
+            int r=pf[input](x,y);
             printf("结果为:%d\n",r);
         }
         else if(input==0)
