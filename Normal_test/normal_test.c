@@ -1598,70 +1598,175 @@
 // }
 //typedef关键字:只能对类型重命名
 
-typedef int(*pt_t)(int,int);
+// typedef int(*pt_t)(int,int);
 
-int add(int x,int y)
-{
-    return x+y;
-}
+// int add(int x,int y)
+// {
+//     return x+y;
+// }
 
-int sub(int x,int y)
-{
-    return x-y;
-}
+// int sub(int x,int y)
+// {
+//     return x-y;
+// }
 
-int mul(int x,int y)
-{
-    return x*y;
-}
+// int mul(int x,int y)
+// {
+//     return x*y;
+// }
 
-int divide(int x,int y)
-{
-    return x/y;
-}
+// int divide(int x,int y)
+// {
+//     return x/y;
+// }
 
-void menu()
-{
-    printf("1.加法");
-    printf("2.减法");
-    printf("3.乘法");
-    printf("4.除法");
-    printf("0.退出");
-}
+// void menu()
+// {
+//     printf("1.加法\n");
+//     printf("2.减法\n");
+//     printf("3.乘法\n");
+//     printf("4.除法\n");
+//     printf("0.退出\n");
+// }
 
-int main()
-{
-    int input=0;
-    char choice;
-    do
-    {
-        menu();
-        printf("请选择:\n");
-        scanf("%d",&input);
-        pt_t pf[]={NULL,add,sub,mul,divide};
-        //          0    1   2   3   4
-        if(input>=1&&input<=4)
-        {
-            printf("请输入要计算的数字：\n");
-            int x,y;
-            scanf("%d %d",&x,&y);
-            int r=pf[input](x,y);
-            printf("结果为:%d\n",r);
-        }
-        else if(input==0)
-        break;
-        else
-        {
-            printf("请重新输入！\n");
-            choice='y';
-            continue;
-        }
-        printf("是否继续:(y/n)");
-        char choice;
-        scanf(" %c",&choice);
-    }while(choice=='y'||choice=='Y');
-    return 0;
-}
+// int main()
+// {
+//     int input=0;
+//     char choice;
+//     do
+//     {
+//         menu();
+//         printf("请选择:\n");
+//         scanf("%d",&input);
+//         pt_t pf[]={NULL,add,sub,mul,divide};
+//         //          0    1   2   3   4
+//         if(input>=1&&input<=4)
+//         {
+//             printf("请输入要计算的数字：\n");
+//             int x,y;
+//             scanf("%d %d",&x,&y);
+//             int r=pf[input](x,y);
+//             printf("结果为:%d\n",r);
+//         }
+//         else if(input==0)
+//         break;
+//         else
+//         {
+//             printf("请重新输入！\n");
+//             choice='y';
+//             continue;
+//         }
+//         Sleep(1000);
+//         system("cls");
+//         printf("是否继续:(y/n)");
+//         scanf(" %c",&choice);
+//     }while(choice=='y'||choice=='Y');
+//     return 0;
+// }
 //函数指针数组
 //用途：转移表
 //实现一个整数计算器
+
+// void A()
+// {
+//     printf("A");
+// }
+
+// int main()
+// {
+//     void A();
+//     void (*pA)()=A;
+//     pA();
+//     //A()就是回调函数
+//     return 0;
+// }
+//回调函数:通过函数指针调用的函数
+
+// int cmp_int(const void* p1,const void* p2)
+// {
+//     int x,y;
+//         x= *(int*)p1;
+//         y= *(int*)p2;
+//     return (x>y)-(x<y);// 升序：> 返回1，= 返回0，< 返回-1
+//     //降序: return (x<y)-(x>y)
+// }
+// //要求：能返回p1和p2所指向的数组内容
+
+// void test()
+// {
+//     int a[10]={4945945,844,97862,159,567,21645,976,264,48,26};
+//     qsort(a,10,4,cmp_int);
+//     //void qsort(void* base,  //指针，指向了要排序的数组的第一个元素
+//     //size_t num,  //base指向的数组的元素个数
+//     //size_t size, //base指向的数组中一个元素的字节数
+//     //int (*compar)(const void* p1, const void* p2）//函数指针 - 应该指向一个函数，该函数一定要为int类型
+//     //指向的这个函数用来比较base指向的数组中的任意两个数据大小
+//     for(int i=0;i<10;i++)
+//     {
+//         printf("%d ",a[i]);
+//     }
+//     printf("\n");
+// }
+
+// int main()
+// {
+//     test();
+//     return 0;
+// }
+//qsort函数（库函数，用来对数据排序）的使用
+
+// struct stu
+// {
+//     char name[100];
+//     int age;
+// };
+
+// int cmp_age(const void* p1,const void* p2)
+// {
+//     int x=(*(struct stu*)p1).age;
+//     int y=(*(struct stu*)p2).age;
+//     return (x>y)-(x<y);
+// }//升序
+
+// int cmp_name(const void* p1,const void* p2)
+// {
+//     return strcmp((*(struct stu*)p1).name,(*(struct stu*)p2).name);
+// }//按首字母顺序排
+
+// int main()
+// {
+//     struct stu a[3]={{"zhangsan",26},{"lisi",55},{"wangwu",35}};
+//     int sz=sizeof(a)/sizeof(a[0]);
+//     qsort(a,sz,sizeof(a[0]),cmp_age);
+//     for(int i=0;i<sz;i++)
+//     {
+//         printf("%s %d\n",a[i].name,a[i].age);
+//     }
+//     printf("\n");
+//     struct stu b[3]={{"zhangsan",26},{"lisi",55},{"wangwu",35}};
+//     int szb=sizeof(b)/sizeof(b[0]);
+//     qsort(a,sz,sizeof(a[0]),cmp_name);
+//     for(int i=0;i<szb;i++)
+//     {
+//         printf("%s %d\n",a[i].name,a[i].age);
+//     }
+//     return 0;
+// }
+//结构体排序
+
+// struct stu
+// {
+//     char name[100];
+//     int age;
+// };
+
+// int main()
+// {
+//     struct stu a[]={"zhangsan",18};
+//     struct stu* p=a;
+//     printf("%s %d\n",(*p).name,(*p).age);
+//     printf("%s %d\n",p->name,p->age);
+//     //结构体指针可以用"->"找到对应的地方，这是常用方法
+//     return 0;
+// }
+//结构体指针
