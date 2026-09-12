@@ -1770,3 +1770,66 @@
 //     return 0;
 // }
 //结构体指针
+
+// int main()
+// {
+//     int a[]={1,2,3,4,5};
+//     int b[10]={0};
+//     memcpy(a+1,a+2,12);//如果“b+1"的位置是源数组会出现未定义的BUG，需要用memmove
+//     int i=0;
+//     int sz=sizeof(b)/sizeof(b[0]);
+//     for(i=0;i<sz;i++)
+//     {
+//     printf("%d ",b[i]);
+//     }
+//     return 0;
+// }
+//内存函数
+//memcpy:完成内存块拷贝，不关注存放的数据类型  void* memcpy(void* destination,const void* source,size_t num)
+//destination指向目标空间，soirce指向源空间，num是拷贝的数据占据的字节数
+//从source的位置向后复制num个字节的数据到destination指向的内存位置
+//需要包含<string.h>
+
+// int main()
+// {
+//     int a[]={1,2,3,4,5};
+//     memmove(a,a+1,12);//如果“b+1"的位置是源数组会出现未定义的BUG，需要用memmove
+//     int i=0;
+//     int sz=sizeof(a)/sizeof(a[0]);
+//     for(i=0;i<sz;i++)
+//     {
+//     printf("%d ",a[i]);//2 3 4 4 5
+//     }
+//     return 0;
+// }
+//memmove函数
+
+// int main()
+// {
+//     char a[10]="abcdef";
+//     memset(a+1,'x',3);
+//     int i=0;
+//     int sz=sizeof(a)/sizeof(a[0]);
+//     for(i=0;i<sz;i++)
+//     {
+//     printf("%c ",a[i]);
+//     }
+//     return 0;
+// }
+//memset函数:memset(void* ptr,int value,size_t num)
+//用来设置内存块的内容，将内存中指定长度的空间设置为特定的内容
+//ptr:指针，指向要设置的内存空间，value:要设置的值，函数会把value的值转化为unsigned char数据，进行设置，num:要设置的内存长度，单位是字节
+//不能用于int类型数组赋值，只能全部置0或者用于char类型数组
+
+// int main()
+// {
+//     char a[]="ac";
+//     char b[]="abd";
+//     if(memcmp(a,b,3)>0)//c>b，返回>0的数
+//     printf("666");
+//     return 0;
+// }
+//memcmp函数：内存比较 memcmp(const void* ptr1,const void* ptr2,size_t num),返回值为int类型，参考qsort函数
+//ptr1/ptr2为两块待比较的内存块，num为指定的比较长度，单位是字节
+
+
