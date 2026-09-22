@@ -72,7 +72,9 @@ void arrange(int num,stu* p,int chocie)
         case 2:qsort(p,num,sizeof(p[0]),cmp_stu_num);break;
         case 3:qsort(p,num,sizeof(p[0]),cmp_stu_score);break;
     }
-}
+}//可以改用函数指针数组 
+//typedef int(pt_t)(const void*,const void*);
+//pt_t p[]={cmp_stu_name,cmp_stu_num,cmp_stu_score};
 
 void menu1(int num,stu* p);
 void print(int num,stu* p);
