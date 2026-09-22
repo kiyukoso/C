@@ -43,9 +43,43 @@ typedef struct student
     int score;
 }stu;
 
-void menu1()
-{   
-    int num=0;
+int cmp_stu_name(const void* a,const void* b)
+{
+    stu p1=*(stu*)a;
+    stu p2=*(stu*)b;
+    return strcmp(p1.name,p2.name);
+}
+
+int cmp_stu_num(const void* a,const void* b)
+{
+    stu p1=*(stu*)a;
+    stu p2=*(stu*)b;
+    return (p1.st_num<p2.st_num)-(p1.st_num>p2.st_num);
+}
+
+int cmp_stu_score(const void* a,const void* b)
+{
+    stu p1=*(stu*)a;
+    stu p2=*(stu*)b;
+    return (p1.score<p2.score)-(p1.score>p2.score);
+}
+
+void arrange(int num,stu* p,int chocie)
+{
+    switch(chocie)
+    {
+        case 1:qsort(p,num,sizeof(p[0]),cmp_stu_name);break;
+        case 2:qsort(p,num,sizeof(p[0]),cmp_stu_num);break;
+        case 3:qsort(p,num,sizeof(p[0]),cmp_stu_score);break;
+    }
+}
+
+void menu1(int num,stu* p);
+void print(int num,stu* p);
+
+void ready()
+{
+        int num=0;
     stu* p=NULL;
     printf("欢迎来到学生成绩管理系统\n");
     printf("请输入学生总人数：\n");
@@ -69,32 +103,43 @@ void menu1()
         p[i].score=score;
     }
     Sleep(1000);
-    for(int j=0;j<num;j++)
+    menu1(num,p);
+    print(num,p);
+    free(p);0.
+}
+
+void menu1(int num,stu* p)
+{   
+    printf("请选择排序模式:\n");
+    printf("0.EXIT\n");
+    printf("1.名字排序\n");
+    printf("2.学号排序:\n");
+    printf("3.成绩排序:\n");
+    int choice=0;
+    scanf("%d",&choice);
+    switch(choice)
+    {
+        case 0:return;break;
+        case 1:arrange(num,p,choice);break;
+        case 2:arrange(num,p,choice);break;
+        case 3:arrange(num,p,choice);break;
+        default:printf("无效的选择，请重新输入\n");
+    }
+}
+
+void print(int num,stu* p)
+{
+        for(int j=0;j<num;j++)
     {
         printf("%s ",p[j].name);
         printf("%d ",p[j].st_num);
         printf("%d ",p[j].score);
-        prntf("\n");
-    }//展示未排序前的名单
-    free(p);
+        printf("\n");
+    }
 }
-
-// void arrange()
-// {
-
-// }
-
-// void print()
-// {
-
-// }
 
 int main()
 {   
-    menu1();
-    // arrange();
-    // print();
-    // free(p);
-    // p=NULL;
+    ready();
     return 0;
 }
