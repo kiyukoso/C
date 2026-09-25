@@ -91,6 +91,7 @@ void ready()
     {
         return;          // 分配失败
     }
+    //realloc(NULL,num*sizeof(stu))==malloc(...)
     printf("已确认总人数为:%d \n",num);
     printf("请输入学生对应的姓名,学号与成绩\n");
     for(int i=0;i<num;i++)

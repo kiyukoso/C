@@ -1832,4 +1832,76 @@
 //memcmp函数：内存比较 memcmp(const void* ptr1,const void* ptr2,size_t num),返回值为int类型，参考qsort函数
 //ptr1/ptr2为两块待比较的内存块，num为指定的比较长度，单位是字节
 
+// typedef struct Node
+// {
+//     int data;//数据域：存数据
+//     struct Node* next;//指针域：存下一个节点的地址
+// }Node;
 
+// Node* creatnode(int data)
+// {
+//     Node* p=(Node*)malloc(sizeof(Node));//malloc函数申请结构体内存
+//     p->data=data;//p->data==p.data（结构体指针常用）;将data赋值给p.data
+//     p->next=NULL;//将p.next初始化
+// }
+
+// int main()
+// {
+//     Node* n1=creatnode(10);
+//     Node* n2=creatnode(20);
+//     Node* n3=creatnode(30);
+//     n1->next=n2;//n1的指针域
+//     n2->next=n3;
+//     n3->next=NULL;//结束链接
+//     Node* p=n1;
+//     while(p!=NULL)
+//     {
+//         printf("%d ",p->data);
+//         p=p->next;//p原本存放n1的地址，而p->next是指向下个节点的地址也就是n2；因此p=p->next等效于p=n2/n3......
+//     }
+//     return 0;
+// }
+
+//链表
+
+#define count1 4
+#define count2 6
+
+int main()
+{
+    int* num=(int*)malloc(count1*sizeof(int));
+    if(num==NULL)
+    {
+        perror("malloc");
+        return 1;
+    }
+    // size_t first=sizeof(num)/sizeof(num[0]);//错误写法sizeof(num)，是求一个指针的大小，永远是8
+    for(int i=0;i<count1;i++)
+    {
+        *(num+i)=i;
+    }
+    for(int j=0;j<count1;j++)
+    {
+        printf("%d ",*(num+j));
+    }
+    printf("\n");
+    int* ptr=realloc(num,count2*sizeof(int));
+    if(ptr==NULL)
+    {
+        perror("malloc");
+        return 1;
+    }
+    num=ptr;
+    for(int i=0;i<count2;i++)
+    {
+        *(num+i)=i;
+    }
+    for(int j=0;j<count2;j++)
+    {
+        printf("%d ",*(num+j));
+    }
+    return 0;
+}
+//malloc函数标准运用
+//类型* 变量名（是指针）=(类型*)malloc(申请大小，通常用sizeof)
+//realloc函数可以用于扩大或缩小内存空间
