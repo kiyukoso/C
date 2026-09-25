@@ -107,7 +107,7 @@ void ready()
     Sleep(1000);
     menu1(num,p);
     print(num,p);
-    free(p);0.
+    free(p);
 }
 
 void menu1(int num,stu* p)
