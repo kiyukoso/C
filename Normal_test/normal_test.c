@@ -1864,44 +1864,44 @@
 
 //链表
 
-#define count1 4
-#define count2 6
+// #define count1 4
+// #define count2 7
 
-int main()
-{
-    int* num=(int*)malloc(count1*sizeof(int));
-    if(num==NULL)
-    {
-        perror("malloc");
-        return 1;
-    }
-    // size_t first=sizeof(num)/sizeof(num[0]);//错误写法sizeof(num)，是求一个指针的大小，永远是8
-    for(int i=0;i<count1;i++)
-    {
-        *(num+i)=i;
-    }
-    for(int j=0;j<count1;j++)
-    {
-        printf("%d ",*(num+j));
-    }
-    printf("\n");
-    int* ptr=realloc(num,count2*sizeof(int));
-    if(ptr==NULL)
-    {
-        perror("malloc");
-        return 1;
-    }
-    num=ptr;
-    for(int i=0;i<count2;i++)
-    {
-        *(num+i)=i;
-    }
-    for(int j=0;j<count2;j++)
-    {
-        printf("%d ",*(num+j));
-    }
-    return 0;
-}
+// int main()
+// {
+//     int* num=(int*)malloc(count1*sizeof(int));
+//     if(num==NULL)
+//     {
+//         perror("malloc");
+//         return 1;
+//     }
+//     // size_t first=sizeof(num)/sizeof(num[0]);//错误写法sizeof(num)，是求一个指针的大小，永远是8
+//     for(int i=0;i<count1;i++)
+//     {
+//         *(num+i)=i;
+//     }
+//     for(int j=0;j<count1;j++)
+//     {
+//         printf("%d ",*(num+j));
+//     }
+//     printf("\n");
+//     int* ptr=realloc(num,count2*sizeof(int));
+//     if(ptr==NULL)
+//     {
+//         perror("malloc");
+//         return 1;
+//     }
+//     num=ptr;
+//     for(int i=0;i<count2;i++)
+//     {
+//         *(num+i)=i;
+//     }
+//     for(int j=0;j<count2;j++)
+//     {
+//         printf("%d ",*(num+j));
+//     }
+//     return 0;
+// }
 //malloc函数标准运用
 //类型* 变量名（是指针）=(类型*)malloc(申请大小，通常用sizeof)
 //realloc函数可以用于扩大或缩小内存空间
