@@ -54,7 +54,7 @@ int cmp_stu_num(const void* a,const void* b)
 {
     stu p1=*(stu*)a;
     stu p2=*(stu*)b;
-    return (p1.st_num<p2.st_num)-(p1.st_num>p2.st_num);
+    return (p1.st_num>p2.st_num)-(p1.st_num<p2.st_num);
 }
 
 int cmp_stu_score(const void* a,const void* b)
@@ -72,7 +72,14 @@ void arrange(int num,stu* p,int chocie)
         case 2:qsort(p,num,sizeof(p[0]),cmp_stu_num);break;
         case 3:qsort(p,num,sizeof(p[0]),cmp_stu_score);break;
     }
-}//可以改用函数指针数组 
+}
+//qsotr比较规则：
+//返回-1：第一个参数小于第二个参数
+//返回0：第一个参数等于第二个参数
+//返回1：第一个参数大于第二个参数
+//qsort会把更小的参数放前面，但是用：(p1.st_num>p2.st_num)-(p1.st_num<p2.st_num);、(p1.score<p2.score)-(p1.score>p2.score);就可以自动调节按什么顺序了，本质是根据返回值去定义哪个应该排在前面和后面
+
+//可以改用函数指针数组 
 //typedef int(pt_t)(const void*,const void*);
 //pt_t p[]={cmp_stu_name,cmp_stu_num,cmp_stu_score};
 
